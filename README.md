@@ -9,18 +9,23 @@ Setup instructions:
     wget -O speedtest-cli https://raw.github.com/sivel/speedtest-cli/master/speedtest_cli.py
     chmod +x speedtest-cli
     ```
-1. Create a crontab similar to this
+2. Create a crontab similar to this
 
     ```bash
     crontab -e
-    58,18,38 * * * * root /<path>/<to>/<file>/speedtest-cli --simple > /tmp/speedtest.out
+    3,18,33,48 * * * * /<path>/<to>/<file>/speedtest-cli --simple > /tmp/speedtest.out
     ```
-1. Copy speedtest.sh into Munin plugins folder (on Debian/Ubuntu)
+3. Copy speedtest.sh into Munin plugins folder (on Debian/Ubuntu)
 
     ```bash
-    cp /<path>/<to>/<file>/speedtest.sh /etc/munin/plugins/speedtest.sh
+    cp /<path>/<to>/<file>/speedtest.sh /usr/share/munin/plugins/speedtest.sh
     chmod 777 /etc/munin/plugins/speedtest.sh
+   
     ```
+4. Make symlink to Munins active Plugin Respository
+    ```bash
+    ln -s /usr/share/munin/plugins/speedtest /etc/munin/plugins/speedtest
+
 1. Restart munin-node to detect the new plugin
 
     ```bash
